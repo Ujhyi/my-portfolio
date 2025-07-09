@@ -3,7 +3,6 @@ import { FaLinkedin, FaFacebook, FaGithub, FaBars, FaTimes, FaRegFilePdf } from 
 import meImage from './assets/me.jpeg';
 import reactImage from './assets/react.svg'
 
-import { PiReadCvLogoBold } from "react-icons/pi";
 
 function App() {
     
