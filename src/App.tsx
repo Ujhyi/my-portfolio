@@ -30,7 +30,7 @@ function App() {
     return (
         <div className="min-h-screen bg-black text-white">
             {/* Navbar */}
-        <nav className="bg-black shadow-md fixed w-full top-0 left-0 z-10">
+        <nav className="bg-black shadow-md fixed w-full top-5 left-0 z-20">
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
 
                 {/* Left: Logo + Brand */}
@@ -68,7 +68,7 @@ function App() {
                 </ul>
             </div>
             )}
-                <div className="border-t border-dashed border-gray-500 w-full"></div>
+                <div className="border-t border-dashed border-gray-500 w-full mt-5"></div>
             </nav>
 
             {/* Main */}
