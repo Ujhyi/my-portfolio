@@ -9,6 +9,51 @@ function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
     
+
+    const timelineData = [
+    {
+        duration: "May 2025 – Present",
+        title: "DevOps Engineer",
+        company: "Triton Digital | Full-Time | Bratislava",
+        description: [
+            "External employee for Slovak Telecom.",
+            "Configured and maintained Linux servers for internet TV services.",
+            "Installed, patched, and updated systems.",
+            "Deployed Kubernetes modules delivered by developers.",
+            "Participated in AI proof-of-concept feature development.",
+            "Handled customer tickets and took part in night shifts and on-call rotations.",
+            "Night shifts when needed.",
+            "Hold on-call hotline duty for one week at a time.",
+        ]
+    },
+    {
+        duration: "Oct 2024 – May - 2025",
+        title: "TV Trainee Speacialist",
+        company: "Slovak Telecom | Part-Time | Bratislava",
+        description: [
+            "Worked as a DevOps trainee engineer.",
+            "Configured Linux servers.",
+            "Operating system installation.",
+            "System patching.",
+            "Handled customer tickets related to internet TV services.",
+            "Worked with Kubernetes for deploying modules.",
+            "Contributed to the development of new AI features for internet TV.",
+        ]
+    },
+        {
+        duration: "March 2023 – March - 2024",
+        title: "ICT Administrator It",
+        company: "Deutsche Telecom IT Solution | Part-Time | Kosice",
+        description: [
+        "Managed incident and change tickets based on ITIL standards.",
+        "Ensured customer service availability per SLA commitments.",
+        "Handled Linux server configuration, patching, and troubleshooting.",
+        "Supported internal processes like Incident and Change Management."
+        ]
+    }
+    ];
+
+
     const [formData, setFormData] = useState({
         email: '',
         subject: '',
@@ -46,6 +91,7 @@ function App() {
                     <li><a href="#skills" className="hover:text-zinc-400">SKILLS</a></li>
                     <li><a href="#education" className="hover:text-zinc-400">EDUCATION</a></li>
                     <li><a href="#projects" className="hover:text-zinc-400">PROJECTS</a></li>
+                    <li><a href="#certificates" className="hover:text-zinc-400">CERTIFICATES</a></li>
                     <li><a href="#contact" className="hover:text-zinc-400">CONTACT</a></li>
                 </ul>
 
@@ -82,8 +128,7 @@ function App() {
                             Welcome to my portfolio website! I am DevOps Enginner with a passion for
                             information and communication technologies. Here, you can find
                             information about my work, skills, education and experience. Feel free to browse
-                            around and contact me if you have any questions or would like to work
-                            together.
+                            around and contact me if you have any questions or would like to stay in touch.
                         </p>
 
                         {/* Social Icons */}
@@ -99,7 +144,7 @@ function App() {
                         <div className="md:w-1/2 flex justify-center">
                         <img 
                             src={meImage}
-                            className="rounded-full w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 object-cover filter grayscale"
+                            className="rounded-full w-100 h-100 sm:w-72 sm:h-72 md:w-80 md:h-80 object-cover filter grayscale"
                         />
                         </div>
 
@@ -107,52 +152,64 @@ function App() {
                 </section>
 
                 {/* Work Experience */}
-                <section id="experience" className="bg-black text-white px-4 md:px-12 lg:px-20 py-16 space-y-12">
-                    {/* Heading */}
-                    <div>
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Work Experience</h2>
-                        <p className="text-gray-400 max-w-2xl">
-                            Look through my work experience. 
-                        </p>
+                <section id="experience" className="bg-black text-white px-4 md:px-12 lg:px-20 py-16">
+                {/* Heading */}
+                <div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Work Experience</h2>
+                    <p className="text-gray-400 max-w-2xl">
+                    Look through my work experience timeline.
+                    </p>
+                </div>
+
+                <div className="relative mt-10">
+                    {/* Responsive Vertical Line */}
+                    <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full border-l-2 md:border-r-2 border-gray-700"></div>
+
+                    <div className="flex flex-col space-y-12">
+                    {timelineData.map((item, index) => (
+                        <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center w-full">
+                        {/* Yellow Circle */}
+                        <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white z-10"></div>
+
+                        {index % 2 === 0 ? (
+                            <>
+                            {/* Left side (desktop) or full (mobile) */}
+                            <div className="w-full md:w-1/2 md:pr-6 flex justify-start md:justify-end">
+                                <div className="bg-zinc-800 p-6 rounded-lg shadow-md w-full max-w-xl text-left">
+                                <p className="text-sm text-gray-400">{item.duration}</p>
+                                <h3 className="text-xl font-bold">{item.title}</h3>
+                                <p className="text-gray-400 text-sm mb-2 mt-2">{item.company}</p>
+                                <ul className="list-disc list-inside space-y-1 text-gray-300 text-sm">
+                                    {Array.isArray(item.description) &&
+                                    item.description.map((point, i) => <li key={i}>{point}</li>)}
+                                </ul>
+                                </div>
+                            </div>
+                            {/* Spacer */}
+                            <div className="hidden md:block w-1/2"></div>
+                            </>
+                        ) : (
+                            <>
+                            {/* Spacer */}
+                            <div className="hidden md:block w-1/2"></div>
+                            {/* Right side (desktop) or full (mobile) */}
+                            <div className="w-full md:w-1/2 md:pl-6 flex justify-start">
+                                <div className="bg-zinc-800 p-6 rounded-lg shadow-md w-full max-w-xl text-left">
+                                <p className="text-sm text-gray-400">{item.duration}</p>
+                                <h3 className="text-xl font-bold">{item.title}</h3>
+                                <p className="text-gray-400 text-sm mb-2 mt-2">{item.company}</p>
+                                <ul className="list-disc list-inside space-y-1 text-gray-300 text-sm">
+                                    {Array.isArray(item.description) &&
+                                    item.description.map((point, i) => <li key={i}>{point}</li>)}
+                                </ul>
+                                </div>
+                            </div>
+                            </>
+                        )}
+                        </div>
+                    ))}
                     </div>
-                    {/* Main */}
-                    <div className="flex flex-col lg:flex-row lg:space-x-16 space-y-8 lg:space-y-0">
-                        <div className="bg-zinc-800 rounded-lg p-6 w-full lg:w-1/2 text-center">
-                            <h3 className="text-lg font-bold mb-2">Triton Digital - External Slovak Telecom Employee</h3>
-                            <p className="text-gray-400 text-sm mb-1">May 2025 – Present</p>
-                            <p className="text-gray-400 text-sm mb-4 italic">DevOps</p>
-                            <p className="text-gray-300 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto">
-                                I work as a full-time external employee for Slovak Telekom in a DevOps role. My responsibilities include c
-                                onfiguring Linux servers used for providing internet TV services – installing, patching, and updating them. 
-                                In some cases, I also work with Oracle SQL databases. I upload Kubernetes modules delivered by developers 
-                                and participate in creating new AI proof-of-concept features related to internet TV. Additionally, I handle
-                                customer tickets, occasionally work night shifts, and hold a one-week on-call hotline duty.
-                            </p>
-                        </div>
-                        <div className="bg-zinc-800 rounded-lg p-6 w-full lg:w-1/2 text-center">
-                            <h3 className="text-lg font-bold mb-2">Slovak Telecom - Bratislava</h3>
-                            <p className="text-gray-400 text-sm mb-1">October 2024 – May 2025</p>
-                            <p className="text-gray-400 text-sm mb-4 italic">ICT Linux Administrator</p>
-                            <p className="text-gray-300 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto">
-                                As a DevOps trainee engineer, I worked on configuring Linux servers, including OS 
-                                installation and patching. I handled customer tickets related to internet TV 
-                                services and worked with Kubernetes for deploying modules. Additionally, I 
-                                contributed to the development of new AI features for internet TV.
-                            </p>
-                        </div>
-                        <div className="bg-zinc-800 rounded-lg p-6 w-full lg:w-1/2 text-center">
-                            <h3 className="text-lg font-bold mb-2">Deutsche Telekom IT Solutions (Kosice)</h3>
-                            <p className="text-gray-400 text-sm mb-1">March 2023 – March 2024</p>
-                            <p className="text-gray-400 text-sm mb-4 italic">ICT Linux Administrator</p>
-                            <p className="text-gray-300 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto">
-                                I worked for one year as a Linux System Administrator, where I independently reviewed, 
-                                created, and resolved tickets, including change management and incident tickets based 
-                                on ITIL principles. My responsibilities focused on maintaining customer services in 
-                                line with defined SLAs and internal processes such as Incident Management (INM) and 
-                                Change Management (CHM).
-                            </p>
-                        </div>
-                    </div>
+                </div>
                 </section>
 
                 {/* Skills Section */}
@@ -186,9 +243,9 @@ function App() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Education</h2>
                     <div className="text-gray-400 max-w-2xl">
                         <p className="text-gray-400 text-sm sm:text-base md:text-lg text-justify  mx-auto">
-                        I completed my bachelor’s degree in Business Informatics at the Technical University of Košice,
-                        Faculty of Electrical Engineering and Informatics. Currently, I am pursuing my master’s degree 
-                        in Information Management at the University of Economics in Bratislava, Faculty of Business Informatics.
+                        I completed my bachelor’s degree in Business Informatics at the Technical University of Košice, 
+                        Faculty of Electrical Engineering and Informatics, and my master’s degree in Information Management 
+                        at the University of Economics in Bratislava, Faculty of Business Informatics.
                         </p>
                         <p className="mt-2">
 
@@ -199,16 +256,16 @@ function App() {
                     {/* Main */}
                     <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-8 lg:space-y-0">
                         <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
-                            <h3 className="text-xl font-bold mb-2">Technical University of Košice</h3>
-                            <p className="text-gray-400 text-sm mb-1">September 2020 – June 2023</p>
-                            <p className="text-gray-400 text-sm italic mb-2">Faculty of Electrical Engineering and Informatics</p>
-                            <p className="text-gray-300 text-base font-medium">Business Informatics (Bachelor’s degree)</p>
-                        </div>
-                        <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
                             <h3 className="text-xl font-bold mb-2">University of Economics in Bratislava</h3>
                             <p className="text-gray-400 text-sm mb-1">September 2023 – Present</p>
                             <p className="text-gray-400 text-sm italic mb-2">Faculty of Business Informatics</p>
                             <p className="text-gray-300 text-base font-medium">Information Management (Master’s degree)</p>
+                        </div>
+                        <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
+                            <h3 className="text-xl font-bold mb-2">Technical University of Košice</h3>
+                            <p className="text-gray-400 text-sm mb-1">September 2020 – June 2023</p>
+                            <p className="text-gray-400 text-sm italic mb-2">Faculty of Electrical Engineering and Informatics</p>
+                            <p className="text-gray-300 text-base font-medium">Business Informatics (Bachelor’s degree)</p>
                         </div>
                     </div>
                 </section>
@@ -265,6 +322,61 @@ function App() {
 
                     </div>
                     
+                </section>
+
+                {/* Certificates Section */}
+                <section id="certificates" className="bg-black text-white px-4 md:px-12 lg:px-20 py-16 space-y-12">
+                    {/* Heading */}
+                    <div>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Certificates</h2>
+                        <div className="text-gray-400 max-w-2xl">
+                            <p className="text-gray-400 text-sm sm:text-base md:text-lg text-justify  mx-auto">
+                                This section highlights the certifications I’ve earned to expand and validate my 
+                                technical and professional skills. Each certificate reflects a commitment to 
+                                continuous learning and staying current with industry standards and technologies.
+                            </p>
+                            <p className="mt-2">
+
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Projects Card */}
+                    <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-8 lg:space-y-0">
+                        <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
+                            <h3 className="text-xl font-bold mb-2">Red Hat Certified System Administrator (RHCSA – EX200)</h3>
+                            <h3 className="text-xl font-bold mb-2 text-red-900">In Progress ...</h3>
+                            <p className="text-gray-300 text-sm italic mb-5 mt-5">Official Certificate</p>
+                            <p className="text-gray-400 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto mt-5">
+                            Validated the ability to perform essential Linux system administration tasks, including user 
+                            and group management, file permissions, process control, software installation, networking 
+                            configuration, firewall management, system logging, and basic shell scripting. Demonstrated 
+                            proficiency in managing Red Hat Enterprise Linux environments in real-world production scenarios.
+                            </p>
+                        </div>
+                        <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
+                            <h3 className="text-xl font-bold mb-2">Linux Administration : The Complete Linux Bootcamp</h3>
+                            <p className="text-gray-300 text-sm italic mb-5 mt-5">Udemy – Self Learning Courses</p>
+                            <p className="text-gray-400 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto mt-5">
+                            Gained hands-on experience with Linux fundamentals, including file system structure, 
+                            user and group management, permissions, package management, system services, networking, 
+                            and shell scripting. This course provided a solid foundation for working with Linux in 
+                            real-world server and DevOps environments.
+                            </p>
+                        </div>
+                        <div className="bg-zinc-800 rounded-2xl p-6 w-full lg:w-1/2 text-center shadow-md">
+                            <h3 className="text-xl font-bold mb-2">ECDL (European Computer Driving License)</h3>
+                            <p className="text-gray-300 text-sm italic mb-5 mt-5">Official Certificate</p>
+                            <p className="text-gray-400 text-sm sm:text-base md:text-lg text-justify px-4 md:px-8 max-w-3xl mx-auto mt-5">
+                                <ul className="flex flex-col items-center text-center space-y-2">
+                                <li>M2 - Computer Essentials</li>
+                                <li>M3 - Word Processing</li>
+                                <li>M6 - Presentations</li>
+                                <li>M7 - Online Essential</li>
+                                </ul>
+                            </p>
+                        </div>                        
+                    </div>       
                 </section>
 
                 {/* Contact Section */}
